@@ -18,26 +18,26 @@ export default function UploadAdvertisement({ selectedDisplays = dummyDisplays, 
   };
 
   return (
-    <div className="bg-[#232b3b] rounded-xl p-6 mb-6">
+    <div className="bg-[#303744] rounded-xl p-6 mb-6">
       <div className="flex justify-between items-center mb-6">
-        <span className="text-2xl font-bold text-white">Upload Advertisement</span>
+        <span className="text-3xl font-extrabold text-white">Upload Advertisement</span>
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-200 mr-2">Choose same file for same Layouts?</span>
           <button
             type="button"
-            className={`w-10 h-6 flex items-center rounded-full border-2 border-[#b2c2e0] ${sameFile ? 'bg-[#b2c2e0]' : 'bg-transparent'}`}
+            className={`w-10 h-6 flex items-center rounded-full border-2 border-[#b2c2e0] ${sameFile ? 'bg-[#22c55e]' : 'bg-transparent'}`}
             onClick={onToggleSameFile}
             aria-label="Toggle same file for layouts"
           >
             <span
-              className={`block w-5 h-5 rounded-full bg-white shadow transform transition-transform duration-200 ${sameFile ? 'translate-x-4' : ''}`}
+              className={`block w-4 h-4 rounded-full bg-white shadow transform transition-transform duration-200 ${sameFile ? 'translate-x-4' : ''}`}
             />
           </button>
         </div>
       </div>
       <div className="flex gap-6">
         {selectedDisplays.map((d, i) => (
-          <div key={d._id} className="flex-1 bg-[#26304a] rounded-lg p-5 flex flex-col items-center min-w-[220px]">
+          <div key={d._id} className="flex-1 bg-[#272F3F] rounded-lg p-5 flex flex-col items-center min-w-[220px]">
             <div className="mb-4 text-base font-bold text-white">#{i+1} <span className="font-normal">{d.description}</span></div>
             <Upload.Dragger
               accept="image/*"
@@ -65,7 +65,7 @@ export default function UploadAdvertisement({ selectedDisplays = dummyDisplays, 
                   onError && onError(err);
                 }
               }}
-              className="w-full h-32 mb-3 bg-[#232b3b] border-2 border-dashed border-gray-500 rounded flex flex-col items-center justify-center"
+              className="w-full h-32 mb-3 bg-[#272F3F] border-2 border-dashed border-gray-500 rounded flex flex-col items-center justify-center"
             >
               {uploads[d._id] ? (
                 <img src={uploads[d._id]} alt="" className="w-full h-32 object-cover rounded mb-2" />

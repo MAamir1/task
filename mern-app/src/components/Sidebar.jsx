@@ -3,37 +3,42 @@ import SidebarLink from "./SidebarLink";
 
 export default function Sidebar() {
   return (
-    <aside className="w-64 bg-[#232b3b] border-r border-[#2e3a4d] flex flex-col justify-between py-6 px-4 min-h-screen">
-      <div>
-        <div className="text-2xl font-bold mb-8">City17</div>
-        <nav className="space-y-2">
-          <SidebarLink><i className="ri-dashboard-line mr-2" />Dashboard</SidebarLink>
-          <SidebarLink active><i className="ri-file-list-3-line mr-2" />Campaigns</SidebarLink>
-          <SidebarLink><i className="ri-bank-card-line mr-2" />Billing</SidebarLink>
-          <SidebarLink><i className="ri-store-2-line mr-2" />Seller</SidebarLink>
-          <SidebarLink><i className="ri-notification-3-line mr-2" />Notifications</SidebarLink>
-          <SidebarLink><i className="ri-settings-3-line mr-2" />Settings</SidebarLink>
-          <SidebarLink><i className="ri-tv-2-line mr-2" />My Displays</SidebarLink>
+    <aside className="w-52 bg-[#33363d] h-screen fixed left-0 top-0 p-0 flex flex-col z-30 font-[Poppins,sans-serif]">
+      <div className="px-5 pt-3 pb-2">
+        <div className="text-[36px] font-bold leading-none text-[#f4f4f4] mb-10 tracking-tight">City17</div>
+        <nav className="flex flex-col gap-5">
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-semibold hover:text-white transition-colors">
+            <i className="ri-apps-2-line text-xl" />
+            Dashboard
+          </a>
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-semibold hover:text-white transition-colors">
+            <i className="ri-layout-4-line text-xl" />
+            Campaigns
+          </a>
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-semibold hover:text-white transition-colors">
+            <i className="ri-barcode-line text-xl" />
+            Billing
+          </a>
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-semibold hover:text-white transition-colors">
+            <i className="ri-tv-2-line text-xl" />
+            My Displays
+          </a>
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-semibold hover:text-white transition-colors">
+            <i className="ri-settings-3-line text-xl" />
+            Settings
+          </a>
+          <a href="#" className="flex items-center gap-4 text-[#96999F] font-extrabold hover:text-white transition-colors mt-2">
+            <i className="ri-headphone-line text-xl" />
+            <span className="font-bold">Live help</span>
+          </a>
         </nav>
       </div>
-      <div>
-        <div className="mb-4 flex items-center">
-          <span className="text-xs text-gray-400 flex items-center">
-            <i className="ri-money-dollar-circle-line mr-1 text-lg text-[#ffb347]" />0 AUD
-          </span>
-          <button className="ml-2 text-xs text-[#ffb347] underline">Add Balance</button>
-        </div>
-        <div className="mb-4 flex items-start gap-2">
-          <i className="ri-customer-service-2-line text-lg text-[#ffb347] mt-0.5" />
-          <div>
-            <div className="text-xs text-gray-400">Live help</div>
-            <div className="text-[10px] text-gray-500 leading-tight">World's Biggest Decentralized advertisement platform</div>
-          </div>
-        </div>
-        <div className="text-xs text-gray-500 mb-2">v1.2.14<br/>Be Tesla</div>
-        <button className="w-full bg-[#ff4d4f] text-white py-2 rounded flex items-center justify-center gap-2">
-          <i className="ri-logout-box-r-line" />Logout
-        </button>
+      <div className="flex-1" />
+      <div className="px-7 pb-7 mt-auto">
+        <a href="#" className="flex items-center gap-4 text-[#96999F] font-bold hover:text-white transition-colors">
+          <i className="ri-logout-box-r-line text-xl" />
+          Logout
+        </a>
       </div>
     </aside>
   );

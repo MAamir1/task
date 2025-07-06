@@ -3,14 +3,14 @@
 export default function OfferType({ title, description, active, onClick }) {
   return (
     <div
-      className={`flex items-center p-5 rounded-lg mb-4 border transition-all duration-200 cursor-pointer ${active ? "border-[#22c55e] bg-[#232b3b] shadow-lg" : "border-[#2e3a4d] bg-[#232b3b]"}`}
+      className={`flex items-center p-5 rounded-2xl mb-4 ${active ? "bg-[#272F3F] shadow-lg" : "border border-[#2e3a4d] bg-[#232b3b]"}`}
       onClick={onClick}
     >
       <div className="flex-1">
-        <div className="font-bold text-lg text-white mb-1">{title}</div>
+        <div className={`font-bold text-xlg mb-1 ${active ? 'text-white' : 'text-[#b2c2e0]'}`}>{title}</div>
         <div className="flex items-start text-base text-white">
-          <i className="ri-information-line text-[#ffb347] text-xl mr-2 mt-0.5" />
-          <span className="text-sm text-[#e0e6ed]">{description}</span>
+          <i className="ri-information-line text-[#ffb347] text-4xl mr-2 mt-0.5" />
+          <span className="text-sm font-bold text-[#e0e6ed]">{description}</span>
         </div>
       </div>
       <div className="ml-4 flex items-center">

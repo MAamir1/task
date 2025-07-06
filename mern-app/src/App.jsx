@@ -152,9 +152,9 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-[#232b3b] text-white font-sans flex">
+      <div className="min-h-screen bg-[#232b3b] text-white font-sans">
         <Sidebar />
-        <main className="flex-1 p-4 pt-0 bg-[#8c9196]">
+        <main className="p-4 pt-[70px] bg-[#5c5d5f] ml-52">
           <Header />
           <CampaignForm offerType={offerType} onOfferTypeChange={setOfferType} />
           <DisplaysPanel
@@ -189,7 +189,11 @@ export default function App() {
             hours={120}
             locations={selectedDisplays.length}
           />
-          <button className="w-full mt-4 bg-[#232b3b] rounded-xl py-4 text-2xl font-bold text-white text-center tracking-wide shadow-none border-none focus:outline-none" onClick={handleCreateCampaign}>
+          <button
+            // style={{ fontSize: '2.25rem', fontWeight: 800 }}
+            className="appearance-none w-full mx-6 !text-3xl font-extrabold bg-[#23262d] rounded-2xl py-4 text-center tracking-wide border-none outline-none"
+            onClick={handleCreateCampaign}
+          >
             Create Campaign
           </button>
         </main>

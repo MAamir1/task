@@ -125,33 +125,67 @@ export default function DisplaysPanel({ selectedDisplays, onAddDisplay, onRemove
   };
 
   return (
-    <section>
-      {/* Search Displays Section */}
-      <section className="bg-[#26304a] rounded-lg p-6 border border-[#2e3a4d] mb-6">
-        <div className="flex items-center mb-4">
-          <h2 className="text-2xl font-bold flex-1 text-white">Search Displays</h2>
-          <div className="flex items-center text-[#ffb347] text-base">
-            <i className="ri-information-line text-xl mr-1" />
-            Enter an area or address and press Enter to search nearby restaurants.
+    <section className="bg-[#303744] rounded-xl p-6 border border-[#2e3a4d] mb-6">
+      <div className="flex items-center mb-4">
+          <h2 className="appearance-none !text-3xl font-extrabold flex-1 text-white">Search Displays</h2>
+          <div className="flex items-center text-[#b2c2e0] text-base font-bold">
+            <i className="ri-information-line text-[#ffb347] text-3xl mr-1" />
+            Depend upon the Offer Type you Selected.
           </div>
         </div>
-        <div className="flex gap-4 mb-4">
-          <div className="relative flex-1">
-            <input
-              className="w-full bg-[#232b3b] border border-[#2e3a4d] rounded px-10 py-2 text-white placeholder:text-[#b2c2e0]"
-              placeholder="Search Address or Area (press Enter)"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              disabled={loading}
-            />
-            <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-[#b2c2e0] text-lg" />
-            {loading && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#b2c2e0] text-xs">Loading...</span>}
+      {/* Search Displays Section */}
+      <section className="bg-[#272F3F] rounded-xl p-6 border border-[#2e3a4d]">
+        <div className="grid grid-cols-12 gap-6 mb-4">
+          {/* Left: Search Bar and Map */}
+          <div className="col-span-12 md:col-span-6 flex flex-col gap-6">
+            {/* Search Bar */}
+            <div className="relative">
+              <input
+                className="w-full rounded-2xl px-10 py-4 text-white placeholder:text-[#b2c2e0] bg-[#232b3b] font-semibold text-lg"
+                placeholder="Search Address"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                disabled={loading}
+              />
+              <i className="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-[#b2c2e0] text-2xl" />
+              {loading && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#b2c2e0] text-xs">Loading...</span>}
+            </div>
+            {/* Map */}
+            <div className="rounded-lg overflow-hidden" style={{ width: '100%', height: 320 }}>
+              <MapContainer center={mapCenter} zoom={searchLocation ? 10 : 4} style={{ width: "100%", height: "100%" }} scrollWheelZoom={false} ref={mapRef}>
+                <TileLayer
+                  attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {filteredDisplays.map((d, i) => (
+                  <Marker key={d._id || i} position={d.location || usaCenter} icon={markerIcon}>
+                    <Popup>{d.address || d.title || "Display"}</Popup>
+                  </Marker>
+                ))}
+              </MapContainer>
+            </div>
           </div>
-          <button className="flex items-center bg-[#2e3a4d] text-white px-4 py-2 rounded" disabled>
-            <i className="ri-filter-3-line text-lg mr-2" />
-            Filter Displays
-          </button>
+          {/* Right: Address Card and Filter Button */}
+          <div className="col-span-12 md:col-span-6 flex flex-row gap-6 justify-start items-start">
+            {/* Address Card */}
+            <div className="bg-[#353b48] rounded-xl px-5 py-3 flex items-center min-w-[270px]">
+              <span className="text-white font-bold text-xl leading-tight">
+                24 George St, Sydney<br />NSW 2000
+              </span>
+            </div>
+            {/* Filter Button */}
+            <button className="flex items-center bg-[#14171F] text-white font-bold px-4 py-2 rounded-xl">
+              {/* <i className="ri-filter-3-line text-xl mr-2" /> */}
+              <span className="text-xl whitespace-nowrap">Filter Displays</span>
+            </button>
+          </div>
+          {/* No displays found message */}
+          {/* {filteredDisplays.length === 0 && (
+            <div className="col-span-12 mt-4 text-white text-center">
+              No displays found in this area.
+            </div>
+          )} */}
         </div>
         {error && <div className="text-red-400 mb-2">{error}</div>}
         {searchLocation && (
@@ -180,19 +214,6 @@ export default function DisplaysPanel({ selectedDisplays, onAddDisplay, onRemove
           </div>
         )}
         <div className="flex gap-6">
-          <div className="rounded-lg overflow-hidden" style={{ width: 480, height: 320 }}>
-            <MapContainer center={mapCenter} zoom={searchLocation ? 10 : 4} style={{ width: "100%", height: "100%" }} scrollWheelZoom={false} ref={mapRef}>
-              <TileLayer
-                attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {filteredDisplays.map((d, i) => (
-                <Marker key={d._id || i} position={d.location || usaCenter} icon={markerIcon}>
-                  <Popup>{d.address || d.title || "Display"}</Popup>
-                </Marker>
-              ))}
-            </MapContainer>
-          </div>
           <div className="w-96 space-y-4 max-h-[320px] overflow-y-auto pr-2">
             {filteredDisplays.map(display => (
               <DisplayCard
@@ -202,12 +223,11 @@ export default function DisplaysPanel({ selectedDisplays, onAddDisplay, onRemove
                 isSelected={!!selectedDisplays.find(d => d._id === display._id)}
               />
             ))}
-            {filteredDisplays.length === 0 && <div className="text-white">No displays found in this area.</div>}
           </div>
         </div>
-      </section>
+        </section>
       {/* Selected Displays Section */}
-      <div className="bg-[#232b3b] rounded-lg p-4 mb-6 border border-[#2e3a4d]">
+      <div className=" rounded-lg p-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-xl font-bold text-white">Selected Displays</span>
           <span className="text-xl font-bold text-white">{String(selectedDisplays.length).padStart(2, '0')}</span>
@@ -238,6 +258,7 @@ export default function DisplaysPanel({ selectedDisplays, onAddDisplay, onRemove
           ))}
         </div>
       </div>
+      
     </section>
   );
 }
